@@ -88,8 +88,8 @@ class Program
 private int _balance;
 void (int addValue) 
 {
-    ... lots of work doing stuff
     var initialBalance = _balance;
+    ... lots of work doing stuff
     var newBalance = initialBalance + addValue
     while(initialBalance != Interlocked.CompareExchange(ref _balance, newBalance, initialBalance));
     return newBalance;

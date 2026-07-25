@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Showreel Brief — Post-Production Reel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0c0e;
+    --panel:#16181c;
+    --panel-2:#1c1f24;
+    --line:#2a2d33;
+    --text:#ededea;
+    --muted:#8a8f98;
+    --amber:#e8a33d;
+    --teal:#3fbac2;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--amber);color:#0b0c0e;}
+
+  a{color:var(--teal);text-decoration:none;border-bottom:1px solid rgba(63,186,194,0.35);}
+  a:hover{border-bottom-color:var(--teal);}
+
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px;}
+
+  /* ---------- Header / slate ---------- */
+  header{
+    padding:56px 0 32px;
+    border-bottom:1px solid var(--line);
+  }
+  .slate-row{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    color:var(--muted);
+    text-transform:uppercase;
+    margin-bottom:18px;
+  }
+  .rec{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    color:var(--amber);
+  }
+  .rec::before{
+    content:"";
+    width:8px;height:8px;border-radius:50%;
+    background:var(--amber);
+    box-shadow:0 0 8px var(--amber);
+    animation:pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1;}
+    50%{opacity:0.35;}
+  }
+  h1{
+    font-family:'Bebas Neue',sans-serif;
+    font-weight:400;
+    font-size:clamp(38px,7vw,64px);
+    letter-spacing:0.01em;
+    line-height:1.02;
+    margin:0 0 10px;
+  }
+  h1 span{color:var(--amber);}
+  .subhead{
+    color:var(--muted);
+    font-size:16px;
+    max-width:60ch;
+  }
+
+  /* ---------- Section labels ---------- */
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin-bottom:10px;
+    display:block;
+  }
+  h2{
+    font-family:'Bebas Neue',sans-serif;
+    font-weight:400;
+    font-size:clamp(26px,4.5vw,36px);
+    letter-spacing:0.01em;
+    margin:0 0 8px;
+  }
+  section{padding:48px 0;}
+  section + section{border-top:1px solid var(--line);}
+
+  /* ---------- Brief chips ---------- */
+  .brief-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-top:24px;
+  }
+  @media(max-width:720px){.brief-grid{grid-template-columns:1fr;}}
+  .chip{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:16px 18px;
+  }
+  .chip .label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    display:block;
+    margin-bottom:6px;
+  }
+  .chip .value{font-weight:600;font-size:15px;}
+
+  /* ---------- Timeline (signature element) ---------- */
+  .timeline{
+    position:relative;
+    margin:36px 0 8px;
+    padding-top:8px;
+  }
+  .track{
+    position:relative;
+    height:6px;
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:3px;
+    overflow:hidden;
+    margin-bottom:2px;
+  }
+  .track-fill{
+    position:absolute;
+    top:0;left:0;bottom:0;
+    width:0%;
+    background:linear-gradient(90deg,var(--teal),var(--amber));
+    animation:scrub 1.8s cubic-bezier(.4,0,.2,1) 0.3s forwards;
+  }
+  @keyframes scrub{ to { width:100%; } }
+  @media (prefers-reduced-motion: reduce){
+    .track-fill{animation:none;width:100%;}
+    .rec::before{animation:none;}
+  }
+  .ticks{
+    display:flex;
+    justify-content:space-between;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--muted);
+    margin-bottom:28px;
+  }
+
+  .segments{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+  }
+  @media(max-width:820px){.segments{grid-template-columns:1fr 1fr;}}
+  @media(max-width:520px){.segments{grid-template-columns:1fr;}}
+
+  .segment{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:18px 16px;
+    border-top:3px solid var(--teal);
+  }
+  .segment:nth-child(1){border-top-color:var(--amber);}
+  .segment:nth-child(4){border-top-color:var(--amber);}
+  .segment .tc{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--amber);
+    margin-bottom:8px;
+    display:block;
+  }
+  .segment h3{
+    margin:0 0 8px;
+    font-size:15px;
+    font-weight:600;
+  }
+  .segment p{
+    margin:0;
+    font-size:13.5px;
+    color:var(--muted);
+  }
+
+  /* ---------- Focus callout ---------- */
+  .focus-box{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-left:3px solid var(--amber);
+    border-radius:6px;
+    padding:22px 24px;
+    margin-top:28px;
+  }
+  .focus-box ul{margin:10px 0 0;padding-left:20px;}
+  .focus-box li{margin-bottom:6px;}
+
+  /* ---------- Body content ---------- */
+  .lede{font-size:16px;color:var(--text);max-width:70ch;margin-bottom:20px;}
+  .note{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:16px 18px;
+    font-size:14px;
+    color:var(--muted);
+    margin:18px 0;
+  }
+  .note strong{color:var(--text);}
+
+  ul.plain{padding-left:20px;margin:14px 0;}
+  ul.plain li{margin-bottom:10px;}
+
+  .quote-marker{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--teal);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+  }
+
+  /* ---------- Sources ---------- */
+  .sources{
+    font-size:13.5px;
+  }
+  .sources ol{padding-left:20px;}
+  .sources li{margin-bottom:8px;color:var(--muted);}
+
+  footer{
+    padding:32px 0 60px;
+    color:var(--muted);
+    font-size:13px;
+    font-family:'JetBrains Mono',monospace;
+  }
+
+  nav.jump{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:rgba(11,12,14,0.9);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+    padding:12px 0;
+  }
+  nav.jump .wrap{
+    display:flex;
+    gap:20px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    overflow-x:auto;
+  }
+  nav.jump a{
+    color:var(--muted);
+    border-bottom:none;
+    white-space:nowrap;
+  }
+  nav.jump a:hover{color:var(--text);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="slate-row">
+      <span class="rec">Rec · Post-Production Reel</span>
+      <span>Prod. for Zach Bloom · zdbproductions.co.uk</span>
+    </div>
+    <h1>The <span>Showreel</span> Brief</h1>
+    <p class="subhead">Structure and priorities up top for a quick read; the full research and reasoning sit below for anyone who wants the detail.</p>
+  </div>
+</header>
+
+<nav class="jump">
+  <div class="wrap">
+    <a href="#structure">Structure</a>
+    <a href="#focus">Your brief</a>
+    <a href="#analysis">In-depth analysis</a>
+    <a href="#sources">Sources</a>
+  </div>
+</nav>
+
+<section id="structure">
+  <div class="wrap">
+    <span class="eyebrow">Summary</span>
+    <h2>Reel structure at a glance</h2>
+    <p class="lede">Target length: 60–75 seconds. Built from re-cut, already-edited pieces — not new footage. Ordered to prove editing craft first, story second.</p>
+
+    <div class="timeline">
+      <div class="track"><div class="track-fill"></div></div>
+      <div class="ticks">
+        <span>00:00</span><span>00:08</span><span>00:45</span><span>01:00–01:15</span><span>END</span>
+      </div>
+      <div class="segments">
+        <div class="segment">
+          <span class="tc">00:00 – 00:08</span>
+          <h3>Strongest single cut</h3>
+          <p>Music video "thought-beats" lyric-sync sequence. No title card — name/role as a small lower-third over the footage, not before it.</p>
+        </div>
+        <div class="segment">
+          <span class="tc">00:08 – 00:45</span>
+          <h3>3–4 technique beats</h3>
+          <p>Vary the pacing: a fast-cut montage, a graded shot (before/after if possible), a VFX/compositing beat if it exists.</p>
+        </div>
+        <div class="segment">
+          <span class="tc">01:00 – 01:15</span>
+          <h3>Close on SRT work</h3>
+          <p>Most recent, most professional (paid client work) — last impression, not buried mid-reel.</p>
+        </div>
+        <div class="segment">
+          <span class="tc">END</span>
+          <h3>End card</h3>
+          <p>Name, role ("Editor / Post-Production"), contact. Nothing elaborate.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="focus">
+  <div class="wrap">
+    <span class="eyebrow">Your brief</span>
+    <h2>What to focus on, specifically</h2>
+    <div class="brief-grid">
+      <div class="chip">
+        <span class="label">Target</span>
+        <span class="value">Post-production runner / editor roles</span>
+      </div>
+      <div class="chip">
+        <span class="label">Source material</span>
+        <span class="value">Re-cut from existing edited pieces</span>
+      </div>
+      <div class="chip">
+        <span class="label">Timeline</span>
+        <span class="value">No deadline yet — room to do it properly</span>
+      </div>
+    </div>
+
+    <div class="focus-box">
+      <span class="quote-marker">Priority order</span>
+      <ul>
+        <li><strong>Selection over cutting technique.</strong> Since this is an edit-of-edits, the win is in which existing sequences prove editorial craft — not in building new coverage.</li>
+        <li><strong>Cut everything that isn't post-production evidence.</strong> Birthday montage, meme edits, "COVIDMAS" — these dilute a runner-focused reel more than a general one.</li>
+        <li><strong>One continuous music bed underneath</strong>, not each clip's original audio carried over — solves both the tonal mismatch and the licensing question of re-using soundtracked material publicly.</li>
+        <li><strong>Treat the edit itself as a portfolio piece.</strong> With no deadline forcing a rush, the way this reel is cut is itself evidence for the roles it's aimed at.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="analysis">
+  <div class="wrap">
+    <span class="eyebrow">Detail</span>
+    <h2>In-depth analysis</h2>
+
+    <p class="lede">Full reasoning behind the structure above, drawn from industry guidance on showreels and post-production hiring.</p>
+
+    <h3 style="font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:0.04em;color:var(--teal);text-transform:uppercase;margin-top:32px;">Length: keep it under 90 seconds</h3>
+    <p>Sources converge on a short reel: the general rule of thumb sits between 90 seconds and 2 minutes, though several push shorter still — around one minute, with some cutting to just 45 seconds. For entry-level and runner reels specifically, the shorter end is safer. With roughly two dozen pieces to draw from, this forces real curation: a 60–75 second reel realistically fits 5–7 strong shots, not two dozen projects.</p>
+
+    <h3 style="font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:0.04em;color:var(--teal);text-transform:uppercase;margin-top:32px;">The first 5–8 seconds decide everything</h3>
+    <p>This is the most repeated point across every source. Decision-makers often watch only the first 30 seconds, so if the best material isn't front-loaded, attention is lost before it starts. An employer looking through several reels will often watch a few seconds, then sort into "watch again" or "won't" — meaning the opening shot carries more weight than anything else in the reel. The strongest single shot available (most likely from the Same River Twice work) should open, not the school coursework.</p>
+
+    <h3 style="font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:0.04em;color:var(--teal);text-transform:uppercase;margin-top:32px;">Skip long intros — start with the work</h3>
+    <p>Long intros, title cards, and music-only montages before the first shot are a common mistake. Where identifying information is needed, it should be short — name and role only — and layered over footage that's already playing, rather than delaying the work with a static card.</p>
+
+    <h3 style="font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:0.04em;color:var(--teal);text-transform:uppercase;margin-top:32px;">Structure it like a story, with a clear peak</h3>
+    <p>A well-structured reel flows rather than presenting a random sequence of clips. For an editor specifically, a tight montage that shows editing rhythm matters more than any single beautiful shot — which is exactly what the music video's lyric-sync cutting already demonstrates.</p>
+
+    <h3 style="font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:0.04em;color:var(--teal);text-transform:uppercase;margin-top:32px;">Why one focused reel, not a general one</h3>
+    <p>Because the target is specifically post-production, industry guidance is fairly direct: don't combine production and post-production experience in one reel, and don't mix old, low-budget, or university coursework in with the strongest current work. A post-production reel should highlight the most prized work and the relevant techniques — grading, cutting, compositing — rather than breadth for its own sake. At the same time, for someone early-career, making a reel at all (even from student and personal work) demonstrates seriousness about the industry, even without a full professional body of work yet.</p>
+
+    <h3 style="font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:0.04em;color:var(--teal);text-transform:uppercase;margin-top:32px;">Technical specs</h3>
+    <ul class="plain">
+      <li>Format: MP4, H.264 codec</li>
+      <li>Resolution: 1080p or 4K, depending on source footage</li>
+      <li>Frame rate: match the source material (usually 24, 25, or 30fps)</li>
+      <li>Audio: AAC, around –6dB peak levels</li>
+      <li>Aspect ratio: 16:9 for web — also worth preparing square and vertical cuts for social/Instagram sharing</li>
+      <li>Always watch the exported file back before sharing it, to confirm it plays cleanly end to end</li>
+    </ul>
+
+    <h3 style="font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:0.04em;color:var(--teal);text-transform:uppercase;margin-top:32px;">What post-production employers specifically look for</h3>
+    <p>Runner and edit-trainee hiring guidance emphasises an interest in how stories are built through assembling shots and scenes, a good eye for composition, attention to detail with fine timings, and genuine curiosity about the technical side of editing tools. None of that requires flashy production value — it rewards a reel that shows deliberate, considered cuts over merely attractive footage.</p>
+
+    <div class="note">
+      <strong>On re-cutting existing pieces:</strong> because this reel is built from already-finished, already-soundtracked work, the biggest practical risk is audio clashing across cuts. A single continuous music bed underneath the whole reel — rather than carrying over each clip's original track — avoids that, and sidesteps licensing questions that come with re-publishing soundtracked material under his own name on a public site.
+    </div>
+  </div>
+</section>
+
+<section id="sources">
+  <div class="wrap">
+    <span class="eyebrow">References</span>
+    <h2>Sources</h2>
+    <div class="sources">
+      <ol>
+        <li><a href="https://www.epidemicsound.com/blog/how-to-make-a-showreel/" target="_blank" rel="noopener">Epidemic Sound — How to make a showreel: Format, length &amp; more</a></li>
+        <li><a href="https://blaremedia.net/how-to-build-a-showreel-step-by-step-guide/" target="_blank" rel="noopener">BLARE Media — How to Build a Showreel: Step-by-Step Guide</a></li>
+        <li><a href="https://slickshowreels.com/how-long-should-an-acting-showreel-be-expert-advice/" target="_blank" rel="noopener">Slick Showreels — How Long Should a Showreel Be?</a></li>
+        <li><a href="https://creativelivesinprogress.com/articles/a-guide-to-making-a-successful-showreel" target="_blank" rel="noopener">Creative Lives in Progress — A Guide to Making a Successful Showreel</a></li>
+        <li><a href="https://www.screenskills.com/starting-your-career/building-your-portfolio/how-to-make-a-showreel-for-film-or-tv/" target="_blank" rel="noopener">ScreenSkills — How to Make a Showreel for Film or TV</a></li>
+        <li><a href="https://slickshowreels.co.uk/5-common-mistakes-actors-make-when-creating-a-showreel/" target="_blank" rel="noopener">Slick Showreels — 5 Common Mistakes When Creating a Showreel</a></li>
+        <li><a href="https://artlist.io/blog/how-to-create-a-showreel/" target="_blank" rel="noopener">Artlist — How To Create The Perfect Showreel</a></li>
+        <li><a href="https://www.boycerecruitment.co.uk/hub/how-to-make-a-post-production-showreel/" target="_blank" rel="noopener">Boyce Recruitment — How to Make a Post Production Showreel</a></li>
+        <li><a href="https://www.screenskills.com/job-profiles/browse/film-and-tv-drama/post-production/post-production-runner/" target="_blank" rel="noopener">ScreenSkills — Post-Production Runner Job Profile</a></li>
+        <li><a href="https://www.redsharknews.com/so-you-want-to-work-in-post-production" target="_blank" rel="noopener">RedShark News — So, You Want to Work in Post Production?</a></li>
+        <li><a href="https://www.filmeditingpro.com/the-editors-guide-to-demo-reels-finding-work/" target="_blank" rel="noopener">Film Editing Pro — The Editor's Guide to Demo Reels &amp; Finding Work</a></li>
+        <li><a href="https://nationalcareers.service.gov.uk/job-profiles/video-editor" target="_blank" rel="noopener">National Careers Service — Video Editor</a></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Prepared as a companion to the portfolio site assessment for zdbproductions.co.uk.
+  </div>
+</footer>
+
+</body>
+</html>
